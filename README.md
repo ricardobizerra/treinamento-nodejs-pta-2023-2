@@ -149,6 +149,20 @@ Ainda no server, tem uma abstração construída para facilitar o contato de pes
         
     </p>
 
+6. Com este terminal rodando, abra outro terminal, ainda na pasta /server e rode essa sentença abaixo
+
+   ```sh
+   yarn migration
+   ```
+
+   ou 
+
+   ```sh
+   npm run migration
+   ```
+
+   *OBS.: É necessário que esse comando seja rodado a cada vez que você modificar o arquivo `schema.prisma`*
+
 <br/> 
 
 ## Citi Abstraction Documentation
