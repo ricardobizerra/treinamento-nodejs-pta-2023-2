@@ -25,6 +25,30 @@ class UserController implements Crud {
     return response.status(httpStatus).send(values);
   };
 
+  getById = async (request: Request, response: Response) => {
+    const { age } = request.params;
+    const { httpStatus, values } = await this.citi.getAll();
+
+    const valueToReturn = values.filter(value => value.age < Number(age));
+
+    if (valueToReturn.length === 0) return response.status(httpStatus).send('Não há pessoas usuárias para o filtro escolhido');
+
+    return response.status(httpStatus).send(valueToReturn);
+  };
+
+  averageAge = async (request: Request, response: Response) => {
+    const { httpStatus, values } = await this.citi.getAll();
+
+    const ageSum = values.reduce((accumulate, value) => {
+      return accumulate + value.age
+    }, 0);
+    const numberOfPeople = values.length
+
+    const average = ageSum / numberOfPeople;
+
+    return response.status(httpStatus).send({ averageAge: average });
+  };
+
   delete = async (request: Request, response: Response) => {
     const { id } = request.params;
 
